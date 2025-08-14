@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br transition-colors from-yellow-400 to-green-900 min-h-screen flex flex-col items-center p-4 text-white">
+    <div class="w-full max-w-xl">
+        <h1 class="text-5xl text-pink-600 text-center mb-6 font-bold underline decoration-wavy decoration-gray-900">🌦 Weather Manager</h1>
+
+        <!-- Search button & Location -->
+        <div class="flex gap-2 mb-4 flex-wrap justify-center">
+            <input id="city-input" type="text" placeholder="Enter city name" class="placeholder-gray-900 bg-orange-300 flex-1 p-3 rounded-md text-pink-900 text-lg">
+            <button onclick="searchCity()" class="bg-red-700 hover:bg-gray-500 px-4 py-2 rounded-md font-semibold">Search</button>
+            <button onclick="getLocationWeather()" class="bg-green-700 hover:bg-gray-500 px-4 py-2 rounded-md font-semibold">Use My Location</button>
+        </div>
+
+        <!-- Recent Searches Dropdown -->
+        <div id="recent-container" class="mb-14 hidden">
+            <label class="mr-2 text-2xl text-red-900">Recent Searches:</label>
+            <select id="recent-dropdown" class="text-black px-20 py-3 max-w-xl rounded-md"></select>
+        </div>
+
+        <!-- Temperature Toggle -->
+        <div class="flex items-center justify-center text-3xl text-black gap-3 mb-4">
+  <span>°C</span>
+  <label for="unit-toggle" class="relative inline-flex items-center cursor-pointer">
+    <input id="unit-toggle" type="checkbox" class="sr-only peer">
+    <!-- Slider track -->
+    <div class="w-11 h-6 bg-gray-500 rounded-full peer-checked:bg-blue-900 transition-colors duration-300"></div>
+    <!-- Image that moves across -->
+    <div class="absolute left-0 top-0 w-6 h-6 bg-white rounded-full border 
+                peer-checked:translate-x-5 flex items-center justify-center">
+    </div>
+  </label>
+  <span>°F</span>
+</div>
+
+        <!-- Weather Card -->
+        <div id="weather-card" class="bg-white/40 p-4 rounded-lg shadow-lg backdrop-blur-sm transition-transform duration-500 ease-in-out transform hover:scale-90 hover:bg-yellow-200 hover:text-black">
+            <h2 id="city-name" class="text-2xl text-black font-bold text-3xl">--</h2>
+            <p id="weather-type" class="text-green-900 capitalize text-black font-semibold text-4xl">--</p>
+            <img id="weather-icon" src="" alt="" class="w-20 h-20 mx-auto">
+            <p class="text-orange-700 text-4xl font-bold"><span id="temp">--</span>°</p>
+            
+            <p class="text-purple-900 text-2xl">Feels Like: <span id="feels-like" class="underline decoration-red-900">---</span>°</p>
+            <p class="text-purple-900 text-2xl">Min: <span id="min-temp" class="underline decoration-red-900">--</span>°,   Max: <span id="max-temp" class="underline decoration-red-900">--</span>°</p>
+            <p class="text-purple-900 text-2xl">Humidity: <span id="humidity" class="underline decoration-red-900">--</span>%</p>
+            <p class="text-purple-900 text-2xl">Wind Speed: <span id="wind-speed" class="underline decoration-red-900">--</span></p>
+            <p class="text-purple-900 text-2xl">Visibility: <span id="visibility" class="underline decoration-red-900">--</span></p>
+            <p class="text-purple-900 text-2xl">Pressure: <span id="pressure" class="underline decoration-red-900">--</span></p>
+            <p class="text-purple-900 text-2xl">Sunrise: <span id="sunrise" class="underline decoration-red-900">--</span></p>
+            <p class="text-purple-900 text-2xl">Sunset: <span id="sunset" class="underline decoration-red-900">--</span></p>
+            <p class="text-purple-900 text-2xl">Timezone: <span id="time-zone" class="underline decoration-red-900">--</span></p>
+            <p class="text-purple-900 text-2xl">Last Update: <span id="last-update" class="underline decoration-red-900">--</span></p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-msg" class="bg-yellow-900 text-white p-2 rounded-md mt-3 hidden"></div>
+
+        <!-- 5-Day Forecast -->
+         <h2 class="text-3xl text-center text-5xl text-blue-900 font-bold mt-4 mb-4 col-span-full">5-Day Forecast</h2>
+        <div id="forecast" class=" mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8" >
+             <!-- Forecast items will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
